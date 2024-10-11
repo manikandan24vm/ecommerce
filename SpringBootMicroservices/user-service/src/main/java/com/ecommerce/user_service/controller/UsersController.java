@@ -2,7 +2,7 @@ package com.ecommerce.user_service.controller;
 
 import com.ecommerce.user_service.dto.ErrorResponseDto;
 import com.ecommerce.user_service.dto.UserDTO;
-import com.ecommerce.user_service.entity.Users;
+import com.ecommerce.user_service.entity.User;
 import com.ecommerce.user_service.mapper.UserDtoMapper;
 import com.ecommerce.user_service.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -16,7 +16,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,7 +35,7 @@ public class UsersController {
     })
     @PostMapping("/users")
     public ResponseEntity<UserDTO> createUser(@RequestBody @Valid UserDTO userDTO) {
-        Users users = UserDtoMapper.DtoToEntity(userDTO);
+        User users = UserDtoMapper.DtoToEntity(userDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(UserDtoMapper.entityToDto(userService.createUser(users)));
 
     }
@@ -48,7 +47,7 @@ public class UsersController {
     })
     @GetMapping("/users")
     public ResponseEntity<List<UserDTO>> getAllUsers() {
-        List<Users> usersList = userService.getAllUsers();
+        List<User> usersList = userService.getAllUsers();
         List<UserDTO> userDTOList = usersList.stream().map(UserDtoMapper::entityToDto).toList();
         return ResponseEntity.ok(userDTOList);
     }
@@ -63,7 +62,7 @@ public class UsersController {
     })
     @PutMapping("/users/{userId}")
     public ResponseEntity<UserDTO> updateUser(@PathVariable Long userId, @RequestBody @Valid UserDTO userDTO) {
-        Users users = UserDtoMapper.DtoToEntity(userDTO);
+        User users = UserDtoMapper.DtoToEntity(userDTO);
         return ResponseEntity.ok(UserDtoMapper.entityToDto(userService.updateUser(userId, users)));
     }
 
@@ -77,7 +76,7 @@ public class UsersController {
 
     @GetMapping("/users/{userId}")
     public ResponseEntity<UserDTO> getUserById(@PathVariable Long userId) {
-        Users user = userService.getUserById(userId);
+        User user = userService.getUserById(userId);
         if (user != null) {
             return ResponseEntity.ok(UserDtoMapper.entityToDto(user));
         } else {

@@ -1,6 +1,5 @@
-package com.ecommerce.user_service.aditing;
+package com.ecommerce.user_service.auditing;
 
-import org.hibernate.annotations.Comment;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.stereotype.Component;
 

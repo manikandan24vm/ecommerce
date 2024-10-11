@@ -3,12 +3,12 @@ package com.ecommerce.user_service.mapper;
 import com.ecommerce.user_service.dto.AddressDTO;
 import com.ecommerce.user_service.dto.UserDTO;
 import com.ecommerce.user_service.entity.Address;
-import com.ecommerce.user_service.entity.Users;
+import com.ecommerce.user_service.entity.User;
 
 public class UserDtoMapper {
 
-    public static Users DtoToEntity(UserDTO userDTO){
-        Users user=new Users();
+    public static User DtoToEntity(UserDTO userDTO){
+        User user=new User();
         user.setFirstName(userDTO.getFirstName());
         user.setLastName(userDTO.getLastName());
         user.setPassword(userDTO.getPassword());
@@ -17,9 +17,9 @@ public class UserDtoMapper {
         user.setAddress(toAddress(userDTO.getAddress()));
         return user;
     }
-    public static UserDTO entityToDto(Users users){
+    public static UserDTO entityToDto(User users){
         UserDTO userDTO=new UserDTO();
-        userDTO.setId(users.getId());
+        userDTO.setId(users.getUserId());
         userDTO.setFirstName(users.getFirstName());
         userDTO.setLastName(users.getLastName());
         userDTO.setPhoneNumber(users.getPhoneNumber());
@@ -30,16 +30,16 @@ public class UserDtoMapper {
     public static AddressDTO toAddressDto(Address address){
         AddressDTO addressDTO=new AddressDTO();
         addressDTO.setAddressLine1(address.getAddressLine1());
-        addressDTO.setAddressLine2(address.addressLine2);
-        addressDTO.setAddressLine3(address.addressLine3);
+        addressDTO.setAddressLine2(address.getAddressLine2());
+        addressDTO.setAddressLine3(address.getAddressLine3());
         addressDTO.setPin(address.getPin());
         return addressDTO;
     }
     public static Address toAddress(AddressDTO addressDTO){
         Address address=new Address();
         address.setAddressLine1(addressDTO.getAddressLine1());
-        address.setAddressLine2(addressDTO.addressLine2);
-        address.setAddressLine3(addressDTO.addressLine3);
+        address.setAddressLine2(addressDTO.getAddressLine2());
+        address.setAddressLine3(addressDTO.getAddressLine3());
         address.setPin(addressDTO.getPin());
         return address;
     }

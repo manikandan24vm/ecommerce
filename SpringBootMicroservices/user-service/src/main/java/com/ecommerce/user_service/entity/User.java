@@ -2,17 +2,19 @@ package com.ecommerce.user_service.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.boot.autoconfigure.amqp.RabbitConnectionDetails;
+
+import java.util.Set;
+
 @Entity
 @Table(name="user_db")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class Users extends Details {
+public class User extends Details {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long id;
+    private long userId;
     private String firstName;
     private String lastName;
     private String password;
@@ -20,5 +22,7 @@ public class Users extends Details {
     private String phoneNumber;
     @Embedded
     private Address address;
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private Set<Role> role;
 
 }
