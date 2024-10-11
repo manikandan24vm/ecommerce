@@ -1,5 +1,6 @@
 package com.ecommerce.user_service.entity;
 
+import com.ecommerce.user_service.auditing.CAuditEntityListener;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
 import lombok.*;
@@ -14,7 +15,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @MappedSuperclass
-@EntityListeners(AuditingEntityListener.class)
+@EntityListeners(CAuditEntityListener.class)
 @Getter
 @Setter @ToString
 public class Details {
